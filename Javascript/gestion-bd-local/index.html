@@ -25,10 +25,10 @@
 			<div id="cible"></div>
 
 		  	<script>
-				// definition de la base de données
+				// Definition de la base de données
 				var db = openDatabase('testdb', '1.0', 'Test DB', 2 * 1024 * 1024);
 
-				// création
+				// Création
 				db.transaction( function(cmd) {
 					cmd.executeSql('CREATE TABLE IF NOT EXISTS toto (id unique, nom)');
 
@@ -43,7 +43,13 @@
 						var nb = buffer.rows.length;
 						msg = '<p> nombre de ligne = '+nb+' </p>';
 						document.querySelector("#cible").innerHTML += msg;
-					});
+
+						// Affichage du contenu
+						for (i=0; i < nb; i++) {
+							msg = '<p>'+buffer.rows.item(i).nom+'</p>';
+							document.querySelector("#cible").innerHTML += msg;
+						}
+					}, null);
 				});
 			</script>
 
